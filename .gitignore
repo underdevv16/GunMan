@@ -1,0 +1,31 @@
+# Downloaded archives
+downloads/
+
+
+# Build output
+build/
+bin/
+obj/
+
+*.o
+*.obj
+*.exe
+
+
+# Debug / compiler output
+*.pdb
+*.ilk
+
+
+# IDE files
+.vscode/
+.idea/
+
+*.swp
+*.swo
+*~
+
+
+# OS files
+.DS_Store
+Thumbs.db
