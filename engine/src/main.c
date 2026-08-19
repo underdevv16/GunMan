@@ -4,48 +4,11 @@
 #define SDL_MAIN_HANDLED
 #include<SDL2/SDL.h>
 
+#include "engine_/global.h"
+
 int main(int argc, char *argv[]){
 
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);  // OpenGL profile type = Core
-    SDL_GL_SetAttribute(SDL_MAJOR_VERSION, 3);
-    SDL_GL_SetAttribute(SDL_MINOR_VERSION, 3);
-    
-    // Initialising SDL:
-    if(SDL_Init(SDL_INIT_VIDEO) < 0){
-        printf("Could not initiate SDL: %s \n", SDL_GetError());
-        exit(1);
-    }
-
-    // Specifying a pointer to the SDL window
-    SDL_Window *window = SDL_CreateWindow(
-        "GunMan",                 // Title
-        SDL_WINDOWPOS_CENTERED,
-        SDL_WINDOWPOS_CENTERED,   // Centering the window using the macro provided by SDL
-        800,                      // Width
-        600,                      // Height
-        SDL_WINDOW_OPENGL         // Flag to specify to SDL that OpenGL will be used 
-    );
-
-    if(!window){
-        printf("Failed to create OpenGL window: %s \n", SDL_GetError());
-        exit(1);
-    }
-
-    // Creating an OpenGL context:
-    SDL_GL_CreateContext(window);
-    
-    // Glad loads all the pointers in the right places in the memory so that we can use them.
-    if(!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress)){
-        printf("Failed to load GL: %s \n", SDL_GetError());
-        exit(1);
-    } 
-
-    // Putting some info on the terminal in case of successful OpenGL load
-
-    puts("OpenGL Loaded!");
-    printf("Vendor:   %s\n", glGetString(GL_VENDOR));
-    printf("Renderer: %s\n", glGetString(GL_RENDERER));
-    printf("Version:  %s\n", glGetString(GL_VERSION));
+    render_init();
 
     // Creating a bool for storing quit event:
     // The quit event will come from the OS
@@ -64,6 +27,15 @@ int main(int argc, char *argv[]){
                     break;
             }
         }
+
+        render_begin();
+        render_quad(
+            (vec2){global.render.width * 0.5, global.render.height * 0.5},
+            (vec2){50, 50},
+            (vec4){1,1,1,1}
+        );
+
+        render_end();
     }
 
     puts("Hello there!");
