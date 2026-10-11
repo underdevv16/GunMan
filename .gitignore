@@ -29,3 +29,6 @@ obj/
 # OS files
 .DS_Store
 Thumbs.db
+
+# For my learning
+engine\shaders\shaders_info.txt

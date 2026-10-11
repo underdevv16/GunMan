@@ -1,0 +1,21 @@
+<Vertex Shader>
+
+first line of the shaders file denotes the version and profile.
+Next, we put in the attributes. Like poistion (xyz) and uv coordinates.
+Then, we define an output to pass to the fragment shader. We pass the uv to correctly map the texture onto the quad.
+
+uniforms are values we can pass in every frame that allow us to move objects around, change color, etc
+
+projection matrix is like a camera. Since this is an arcade game with a fixed camera, this is setup once and remains unchanged.
+model matrix is how the object we are rendering can be transformed, scaled, rotated, etc. 
+There is another type of matrix called 'view matrix'. It handels the orientation and poistion of the camera. (Not reqd here as fixed camera).
+
+These shaders also have a main function, but return void.
+
+gl_Position is the transform poistion of our vertices.
+
+<Fragment shader>
+
+the uniforms - color and texture_id are there. color specifies the color of things, and texture_id to specify what texture to use.
+Then, we blend together the texture and color by multiplying them, and pass the uvs to the texture function so it knows which way to draw
+the texture.
