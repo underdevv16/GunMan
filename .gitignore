@@ -31,4 +31,4 @@ obj/
 Thumbs.db
 
 # For my learning
-engine\shaders\shaders_info.txt
+/engine/shaders/shaders_info.txt
